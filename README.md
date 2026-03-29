@@ -1,0 +1,1 @@
+This script is a refactored version of https://github.com/Timiimiimii/TomoKoreFacepaintTool with ZSTD compression and decompression added and some experimental icc profile stuff changed for ease of use
