@@ -101,13 +101,14 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         files = sys.argv[1:]
         for path in files:
-            path2 = os.path.abspath(path)
-            if os.path.exists(path2):
+            if os.path.exists(os.path.abspath(path)):
                 print(f"Found file: {path}")
                 if path.endswith((".zs", ".canvas")):
                     convert_canvas_to_png(Path.cwd() / path)
                 elif path.endswith(".png"):
                     convert_png_to_canvas(Path.cwd() / path)
+                else:
+                    print("File extention unrecognized. Skipping.")
             else:
                 print(f"File {path} doesn't exist.")
     else:
