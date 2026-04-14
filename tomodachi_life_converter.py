@@ -91,8 +91,13 @@ def convert_png_to_canvas(canvas_path):
     if not is_srgb_image(canvas):
         canvas = set_image_gamma(canvas, ENCODING_GAMMA)
 
-    assert canvas.size == (
-        HEIGHT_OF_IMAGE, WIDTH_OF_IMAGE), "Canvas must be 256 x 256 in dimensions"
+    """
+    Clothing etc are of a different canvas size!
+    so let's comment this assert out
+        # assert canvas.size == (
+    #     HEIGHT_OF_IMAGE, WIDTH_OF_IMAGE), "Canvas must be 256 x 256 in dimensions"
+    """
+
     canvas = canvas.convert(IMAGE_MODE).tobytes('raw')
     save_canvas(canvas, canvas_path)
 
@@ -103,13 +108,17 @@ if __name__ == "__main__":
         for path in files:
             if os.path.exists(os.path.abspath(path)):
                 print(f"Found file: {path}")
-                if path.endswith(("canvas.zs", ".canvas")):
+                if path.endswith("canvas.zs"):
                     convert_canvas_to_png(Path.cwd() / path)
                 elif path.endswith(".png"):
                     convert_png_to_canvas(Path.cwd() / path)
                 else:
-                    print("File extention unrecognized.")
+                    print("File extension unrecognized.")
             else:
                 print(f"File {path} doesn't exist.")
     else:
-        print("No files found, quitting")
+        print("No command line arguments received")
+        # lazy vscode f5 pressing
+        # facepaint = "UgcCloth000"
+        # convert_canvas_to_png(Path.cwd() / f"{facepaint}.canvas.zs")
+        # convert_png_to_canvas(Path.cwd() / f"{facepaint}OUTPUT.png")
