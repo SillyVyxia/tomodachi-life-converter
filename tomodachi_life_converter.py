@@ -121,15 +121,6 @@ def convert_canvas_to_png(canvas_path):
         save_file(img, canvas_path)
 
 
-def convert_png(png_path):
-    canvas = Image.open(Path.cwd() / png_path)
-    if canvas.size == (UGC_WIDTH, UGC_HEIGHT):
-        convert_png_to_ugctex(png_path)
-    else:
-        convert_png_to_canvas(png_path)
-    canvas.close()
-
-
 def convert_png_to_ugctex(ugctex_path):
     ugctex = Image.open(Path.cwd() / ugctex_path)
     if not is_srgb_image(ugctex):
