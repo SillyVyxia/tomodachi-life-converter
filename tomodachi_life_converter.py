@@ -46,12 +46,12 @@ def get_icc_profile(image):
 
 
 def is_srgb_image(image):
-    if SRGB_PROFILE in image.info:
+    if "srgb" in image.info:
         return True
     prf = get_icc_profile(image)
     if prf is None:
         return False
-    elif SRGB_PROFILE in prf.profile.profile_description.lower():
+    elif "srgb" in prf.profile.profile_description.lower():
         return True
     return False
 
